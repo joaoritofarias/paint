@@ -16,13 +16,22 @@
                 const canvasCtx = canvas.getContext("2d");
 
                 canvas.addEventListener("mousedown", (e) => {
-                    console.log(event.pageX, event.pageY);
-                    //moveTo();
+                    const canvasX = e.pageX - canvas.offsetLeft;
+                    const canvasY = e.pageY - canvas.offsetTop;
+
+                    canvasCtx.beginPath();
+
+                    canvasCtx.moveTo(canvasX, canvasY);
                 });
 
                 canvas.addEventListener("mousemove", (e) => {
-                    console.log(event.pageX - canvas.offsetLeft , event.pageY -canvas.offsetTop);
-                    //lineTo();
+                    const canvasX = e.pageX - canvas.offsetLeft;
+                    const canvasY = e.pageY - canvas.offsetTop;
+
+                    canvasCtx.lineTo(canvasX, canvasY);
+
+                    canvasCtx.stroke();
+
                 });
 
                 canvas.addEventListener("mouseup", () => {
