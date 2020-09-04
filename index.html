@@ -4,13 +4,36 @@
         <meta charset="utf-8">
         <title>Canvas Paint</title>
         <style>
-            canvas { border: 3px dashed #000000}
+            canvas { 
+                border: 3px dashed #000000;
+                margin: 70px auto 0 auto;
+                display: block;
+            }
         </style>
         <script>
+            document.addEventListener("DOMContentLoaded", () => {
+                const canvas = document.querySelector("canvas");
+                const canvasCtx = canvas.getContext("2d");
 
+                canvas.addEventListener("mousedown", (e) => {
+                    console.log(event.pageX, event.pageY);
+                    //moveTo();
+                });
+
+                canvas.addEventListener("mousemove", (e) => {
+                    console.log(event.pageX - canvas.offsetLeft , event.pageY -canvas.offsetTop);
+                    //lineTo();
+                });
+
+                canvas.addEventListener("mouseup", () => {
+                    
+                });
+
+            })
         </script>
     </head>
     <body>
+
         <canvas width="900" height="900"></canvas>
     </body>
 </html>
