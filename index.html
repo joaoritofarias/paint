@@ -4,16 +4,22 @@
         <meta charset="utf-8">
         <title>Canvas Paint</title>
         <style>
+            main {
+                width: 906px;
+                margin: 70px auto 0 auto;
+            }
+
             canvas { 
                 border: 3px dashed #000000;
-                margin: 70px auto 0 auto;
-                display: block;
             }
         </style>
         <script>
             document.addEventListener("DOMContentLoaded", () => {
                 const canvas = document.querySelector("canvas");
                 const canvasCtx = canvas.getContext("2d");
+
+                const colorPicker = document.querySelector('[name="colorPicker"]')
+                const linePicker = document.querySelector('[name="linePicker"]')
 
                 let clicking = false;
 
@@ -43,20 +49,64 @@
                 });
 
                 canvas.addEventListener("mouseup", () => {
-
                     clicking = false;
                     
                 });
 
                 canvas.addEventListener("mouseout", () => {
                     clicking = false;
+
                 })
+
+                colorPicker.addEventListener("change", () => {
+                    canvasCtx.strokeStyle = colorPicker.value;
+                })
+
+                linePicker.addEventListener("change", () => {
+                    canvasCtx.lineWidth = linePicker.value;
+                })
+
+                canvasCtx.strokeStyle = colorPicker.value;
+                canvasCtx.lineWidth = linePicker.value;
 
             })
         </script>
     </head>
     <body>
+        <main>
+            <div class="toolbar">
+                <select name="colorPicker" aria-label="Escolher Cor">
+                    <optgroup label="Escolher Cor">
+                        <option value="#000">Preto</option>
+                        <option value="#FFF">Branco</option>
+                        <option value="#F00">Vermelho</option>
+                        <option value="#0F0">Verde Claro</option>
+                        <option value="#060">Verde</option>
+                        <option value="00F">Azul</option>
+                        <option value="FF0">Amarelo</option>
+                        <option value="F0F">Rosa</option>
+                        <option value="#333">Cizento Escuro</option>
+                        <option value="#CCC">Cizento Claro</option>
+                    </optgroup>
 
-        <canvas width="900" height="900"></canvas>
+                </select>
+                <select name="linePicker" aria-label="Tamanho de Linha">
+                    <optgroup label="Linha">
+                        <option>1</option>
+                        <option>2</option>
+                        <option>5</option>
+                        <option>8</option>
+                        <option>10</option>
+                        <option>15</option>
+                        <option>20</option>
+                        <option>25</option>
+                        <option>40</option>
+                        <option>50</option>
+                    </optgroup>
+                </select>
+            </div>
+            <canvas width="900" height="900"></canvas>
+        </main>
+        
     </body>
 </html>
